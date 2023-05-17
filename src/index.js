@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import './styles.css';
+
+/* import _ from 'lodash';
 import './styles.css';
 import photo from './Screenshot.png';
 
@@ -18,4 +20,4 @@ function component() {
   return element;
 }
 
-document.body.appendChild(component());
+document.body.appendChild(component()); */
