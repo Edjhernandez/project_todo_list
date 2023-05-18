@@ -6,5 +6,12 @@
   myIcon.src = photo; */
 
 import catchInput from './catch.js';
+import printList from './printList.js';
 
-catchInput();
+const inTask = document.querySelector('input');
+
+document.addEventListener('keyup', (e) => {
+  if ((e.code === 'Enter' || e.code === 'NumpadEnter') && (inTask.value)) {
+    printList(catchInput());
+  }
+});

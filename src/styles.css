@@ -26,7 +26,12 @@ html {
 }
 
 .tasks ul li input {
-  margin: 0 1rem;
+  margin: 0 0.5rem;
+  border: none;
+}
+
+.tasks ul li input:focus {
+  outline: none;
 }
 
 .tached {
