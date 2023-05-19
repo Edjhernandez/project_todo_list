@@ -5,7 +5,9 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'to do list AUTOMATIC',
+      template: './src/index.html',
+      filename: './index.html',
+      minify: true,
     }),
   ],
   output: {
@@ -18,6 +20,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.html$/i,
+        use: ['html-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,

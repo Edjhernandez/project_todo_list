@@ -4,6 +4,119 @@ html {
   box-sizing: border-box;
 }
 
-.hello {
-  background: transparent;
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  max-width: 400px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px transparent;
+  width: 100%;
+  box-shadow: 4px 4px 40px gray;
+}
+
+.container input#ins {
+  border: none;
+  padding: 0;
+  margin: 1rem auto;
+  font-size: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  width: 90%;
+}
+
+.container hr {
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-bottom: solid 0.5px gainsboro;
+  width: 100%;
+}
+
+.container input:focus {
+  outline: none;
+}
+
+.container button {
+  border: solid 1px transparent;
+  cursor: pointer;
+  padding: 1.05rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  font-family: 'Courier New', Courier, monospace;
+  color: dimgrey;
+}
+
+.maintitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 0.5px gainsboro;
+}
+
+.maintitle h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+  margin-left: 1rem;
+}
+
+.maintitle img {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tasks ul {
+  padding: 0;
+  margin: 0;
+}
+
+.tasks ul li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: solid 0.5px gainsboro;
+}
+
+.tasks ul li * {
+  padding: 1rem 0;
+}
+
+.tasks ul li input[type='checkbox'] {
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.tasks ul li input[type='text'] {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.9rem;
+  border: none;
+  width: 86%;
+}
+
+.tasks ul li input:focus {
+  outline: none;
+}
+
+.tasks ul li img {
+  width: 1.1rem;
+  height: auto;
+  margin-right: 1rem;
+}
+
+.tached {
+  text-decoration: line-through;
 }
