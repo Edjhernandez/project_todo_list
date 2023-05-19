@@ -1,4 +1,4 @@
-// import './styles.css';
+import './styles.css';
 import catchInput from './catch.js';
 import printList from './printList.js';
 
