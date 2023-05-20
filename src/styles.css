@@ -13,7 +13,7 @@ main {
 
 .container {
   max-width: 400px;
-  max-height: 400px;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   border: solid 1px transparent;
@@ -119,4 +119,5 @@ main {
 
 .tached {
   text-decoration: line-through;
+  color: gray;
 }
