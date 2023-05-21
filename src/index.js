@@ -43,7 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', (e) => {
   if (e.target.matches('.tasks ul li input[type=\'text\']')) {
     // arrtask = JSON.parse(localStorage.getItem('lsTask'))
-    console.log('entro');
+    const imgOption = document.querySelectorAll('.tasks ul li img');
+    imgOption.forEach((img) => {
+      if (img.id === e.target.id) {
+        img.setAttribute('src', './assets/delete_FILL0_wght700_GRAD0_opsz40.svg');
+      } else {
+        img.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
+      }
+    });
+    // imgOption.setAttribute('src', './assets/delete_FILL0_wght400_GRAD0_opsz48.svg');
+    // console.log('entro');
+    // console.log(e.target.id);
+  } else {
+    const imgOption = document.querySelectorAll('.tasks ul li img');
+    imgOption.forEach((img) => {
+      img.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
+    });
   }
 });
 

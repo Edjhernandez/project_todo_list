@@ -9,8 +9,10 @@ export default function printList(arr) {
     const $inputTask = document.createElement('input');
     $inputTask.type = 'text';
     $inputTask.value = arr[ii].txt;
+    $inputTask.setAttribute('id', ii);
     const $imgMore = document.createElement('img');
     $imgMore.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
+    $imgMore.setAttribute('id', ii);
     // $imgMore.src = svgMore;
     $li.appendChild($checkB);
     $li.appendChild($inputTask);

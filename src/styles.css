@@ -115,6 +115,7 @@ main {
   width: 1.1rem;
   height: auto;
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 .tached {
