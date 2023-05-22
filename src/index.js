@@ -1,6 +1,7 @@
-// import './styles.css';
-// import catchInput from './catch.js';
+import './styles.css';
 import printList from './printList.js';
+import svgDelete from './assets/delete_FILL0_wght700_GRAD0_opsz40.svg';
+import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
 
 const inTask = document.querySelector('input');
 const clearbtn = document.querySelector('button');
@@ -35,41 +36,71 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     ];
     localStorage.setItem('lsTask', JSON.stringify(arrtask));
-    printList(JSON.parse(localStorage.getItem('lsTask')));
+    printList(arrtask);
+  } else {
+    arrtask = JSON.parse(localStorage.getItem('lsTask'));
+    printList(arrtask);
   }
-  printList(JSON.parse(localStorage.getItem('lsTask')));
 });
 
 document.addEventListener('click', (e) => {
   if (e.target.matches('.tasks ul li input[type=\'text\']')) {
-    // arrtask = JSON.parse(localStorage.getItem('lsTask'))
+    arrtask = JSON.parse(localStorage.getItem('lsTask'));
     const imgOption = document.querySelectorAll('.tasks ul li img');
+    const activeTask = document.getElementsByName('taskinlist');
     imgOption.forEach((img) => {
       if (img.id === e.target.id) {
-        img.setAttribute('src', './assets/delete_FILL0_wght700_GRAD0_opsz40.svg');
+        img.src = svgDelete;
+        img.addEventListener('click', () => {
+          arrtask = JSON.parse(localStorage.getItem('lsTask'));
+          arrtask.splice(e.target.id, 1);
+          localStorage.setItem('lsTask', JSON.stringify(arrtask));
+          printList(JSON.parse(localStorage.getItem('lsTask')));
+        });
       } else {
-        img.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
+        img.src = svgMore;
       }
     });
-    // imgOption.setAttribute('src', './assets/delete_FILL0_wght400_GRAD0_opsz48.svg');
-    // console.log('entro');
-    // console.log(e.target.id);
+
+    activeTask.forEach((element) => {
+      element.addEventListener('keyup', (e) => {
+        if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+          arrtask[e.target.id].txt = activeTask[e.target.id].value;
+          localStorage.setItem('lsTask', JSON.stringify(arrtask));
+        }
+      });
+    });
   } else {
     const imgOption = document.querySelectorAll('.tasks ul li img');
     imgOption.forEach((img) => {
-      img.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
+      img.src = svgMore;
     });
   }
+  if (e.target.matches('.tasks ul li input[type=\'checkbox\']')) {
+    arrtask = JSON.parse(localStorage.getItem('lsTask'));
+    const tasktached = document.getElementsByName('taskinlist');
+    if (e.target.checked) {
+      tasktached.forEach((task, index) => {
+        if (task.id === e.target.id) {
+          task.classList.add('tached');
+          arrtask[index].state = true;
+        }
+      });
+    } else {
+      tasktached.forEach((task, index) => {
+        if (task.id === e.target.id) {
+          task.classList.remove('tached');
+          arrtask[index].state = false;
+        }
+      });
+    }
+    localStorage.setItem('lsTask', JSON.stringify(arrtask));
+  }
 });
-
 clearbtn.addEventListener('click', () => {
   arrtask = JSON.parse(localStorage.getItem('lsTask'));
-  arrtask.forEach((element, index) => {
-    if (element.state) {
-      arrtask.splice(index, 1);
-    }
-  });
-
+  const result = arrtask.filter((e) => !e.state);
+  arrtask = result;
   localStorage.setItem('lsTask', JSON.stringify(arrtask));
-  printList(JSON.parse(localStorage.getItem('lsTask')));
+  printList(arrtask);
 });
