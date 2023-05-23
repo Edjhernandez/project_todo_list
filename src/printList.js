@@ -6,25 +6,29 @@ export default function printList(arr) {
     const $li = document.createElement('li');
     const $checkB = document.createElement('input');
     $checkB.type = 'checkbox';
+    $checkB.setAttribute('id', ii);
+    $checkB.setAttribute('name', 'checkblist');
     const $inputTask = document.createElement('input');
     $inputTask.type = 'text';
-    $inputTask.value = arr[ii].textTask;
+    $inputTask.value = arr[ii].txt;
+    $inputTask.setAttribute('id', ii);
+    $inputTask.setAttribute('name', 'taskinlist');
+
+    if (arr[ii].state) {
+      $checkB.checked = true;
+      $inputTask.classList.add('tached');
+    } else {
+      $checkB.checked = false;
+      $inputTask.classList.remove('tached');
+    }
+
     const $imgMore = document.createElement('img');
-    // $imgMore.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
+    $imgMore.setAttribute('id', ii);
     $imgMore.src = svgMore;
     $li.appendChild($checkB);
     $li.appendChild($inputTask);
     $li.appendChild($imgMore);
     list.push($li);
-    $checkB.onchange = () => {
-      if ($checkB.checked) {
-        $inputTask.classList.add('tached');
-        arr[ii].state = true;
-      } else {
-        $inputTask.classList.remove('tached');
-        arr[ii].state = false;
-      }
-    };
   }
   const $ul = document.createElement('ul');
   const $exitList = document.querySelector('.tasks');
