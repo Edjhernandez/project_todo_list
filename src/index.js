@@ -1,4 +1,4 @@
-import './styles.css';
+/* import './styles.css';
 import printList from './printList.js';
 import svgDelete from './assets/delete_FILL0_wght700_GRAD0_opsz40.svg';
 import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
@@ -103,4 +103,4 @@ clearbtn.addEventListener('click', () => {
   arrtask = result;
   localStorage.setItem('lsTask', JSON.stringify(arrtask));
   printList(arrtask);
-});
+}); */

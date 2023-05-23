@@ -1,4 +1,4 @@
-import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
+/* import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
 
 export default function printList(arr) {
   const list = [];
@@ -38,4 +38,4 @@ export default function printList(arr) {
   });
   $exitList.appendChild($ul);
   return $exitList;
-}
+} */
