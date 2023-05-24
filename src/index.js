@@ -107,9 +107,12 @@ clearbtn.addEventListener('click', () => {
 
 /* ***********************from here using classes******************* */
 
+import './styles.css';
 import printList from './printList.js';
 import Task from './classtask.js';
 import Listprint from './classlistprint.js';
+import svgDelete from './assets/delete_FILL0_wght700_GRAD0_opsz40.svg';
+import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
 
 const inTask = document.querySelector('input');
 const clearbtn = document.querySelector('button');
@@ -159,18 +162,15 @@ document.addEventListener('click', (e) => {
     const activeTask = document.getElementsByName('taskinlist');
     imgOption.forEach((img) => {
       if (img.id === e.target.id) {
-        img.setAttribute('src', './assets/delete_FILL0_wght700_GRAD0_opsz40.svg');
-        // img.src = svgDelete;
+        img.src = svgDelete;
         img.addEventListener('click', () => {
           Toprint.arr = JSON.parse(localStorage.getItem('lsTask'));
-          // toprint.arr.splice(e.target.id, 1);
           Toprint.remove1task(e.target.id);
           localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
           printList(Toprint.arr);
         });
       } else {
-        img.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
-        // img.src = svgMore;
+        img.src = svgMore;
       }
     });
 
@@ -192,8 +192,7 @@ document.addEventListener('click', (e) => {
   } else {
     const imgOption = document.querySelectorAll('.tasks ul li img');
     imgOption.forEach((img) => {
-      img.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
-      // img.src = svgMore;
+      img.src = svgMore;
     });
   }
 
