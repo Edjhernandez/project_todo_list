@@ -1,4 +1,4 @@
-/* import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
+// import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
 
 export default function printList(arr) {
   const list = [];
@@ -24,7 +24,8 @@ export default function printList(arr) {
 
     const $imgMore = document.createElement('img');
     $imgMore.setAttribute('id', ii);
-    $imgMore.src = svgMore;
+    $imgMore.setAttribute('src', './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg');
+    // $imgMore.src = svgMore;
     $li.appendChild($checkB);
     $li.appendChild($inputTask);
     $li.appendChild($imgMore);
@@ -38,4 +39,4 @@ export default function printList(arr) {
   });
   $exitList.appendChild($ul);
   return $exitList;
-} */
+}
