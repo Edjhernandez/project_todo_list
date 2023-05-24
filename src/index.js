@@ -112,7 +112,7 @@ import Task from './classtask.js';
 import Listprint from './classlistprint.js';
 
 const inTask = document.querySelector('input');
-// const clearbtn = document.querySelector('button');
+const clearbtn = document.querySelector('button');
 const Toprint = new Listprint();
 
 inTask.addEventListener('keyup', (e) => {
@@ -180,6 +180,15 @@ document.addEventListener('click', (e) => {
         localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
       });
     });
+
+    const $li = document.querySelectorAll('li');
+    $li.forEach((img) => {
+      if (img.id === e.target.id) {
+        img.classList.add('lightbg');
+      } else {
+        img.classList.remove('lightbg');
+      }
+    });
   } else {
     const imgOption = document.querySelectorAll('.tasks ul li img');
     imgOption.forEach((img) => {
@@ -208,4 +217,11 @@ document.addEventListener('click', (e) => {
     }
     localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
   }
+});
+
+clearbtn.addEventListener('click', () => {
+  Toprint.arr = JSON.parse(localStorage.getItem('lsTask'));
+  Toprint.arr = Toprint.removesometasks();
+  printList(Toprint.arr);
+  localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
 });

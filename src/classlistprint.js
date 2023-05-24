@@ -12,4 +12,8 @@ export default class Listprint {
     remove1task(e) {
       this.arr.splice(e, 1);
     }
+
+    removesometasks() {
+      return this.arr.filter((e) => !e.state);
+    }
 }
