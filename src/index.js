@@ -206,6 +206,10 @@ document.addEventListener('click', (e) => {
           Toprint.arr[index].state = true;
         }
       });
+      const $li = document.querySelectorAll('li');
+      $li.forEach((img) => {
+        img.classList.remove('lightbg');
+      });
     } else {
       tasktached.forEach((task, index) => {
         if (task.id === e.target.id) {
