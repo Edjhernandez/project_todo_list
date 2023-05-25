@@ -4,6 +4,7 @@ export default function printList(arr) {
   const list = [];
   for (let ii = 0; ii < arr.length; ii += 1) {
     const $li = document.createElement('li');
+    $li.setAttribute('id', ii);
     const $checkB = document.createElement('input');
     $checkB.type = 'checkbox';
     $checkB.setAttribute('id', ii);

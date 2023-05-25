@@ -109,6 +109,7 @@ main {
 
 .tasks ul li input:focus {
   outline: none;
+  background-color: #ffffe0;
 }
 
 .tasks ul li img {
@@ -121,4 +122,8 @@ main {
 .tached {
   text-decoration: line-through;
   color: gray;
+}
+
+.lightbg {
+  background-color: #ffffe0;
 }

@@ -1,4 +1,4 @@
-import './styles.css';
+/* import './styles.css';
 import printList from './printList.js';
 import svgDelete from './assets/delete_FILL0_wght700_GRAD0_opsz40.svg';
 import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
@@ -20,7 +20,7 @@ inTask.addEventListener('keyup', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.length === 0) {
+  if (!JSON.parse(localStorage.getItem('lsTask')) {
     arrtask = [
       {
         txt: 'wash the dogs',
@@ -103,4 +103,132 @@ clearbtn.addEventListener('click', () => {
   arrtask = result;
   localStorage.setItem('lsTask', JSON.stringify(arrtask));
   printList(arrtask);
+}); */
+
+/* ***********************from here using classes******************* */
+
+import './styles.css';
+import printList from './printList.js';
+import Task from './classtask.js';
+import Listprint from './classlistprint.js';
+import svgDelete from './assets/delete_FILL0_wght700_GRAD0_opsz40.svg';
+import svgMore from './assets/more_vert_FILL0_wght700_GRAD0_opsz24.svg';
+
+const inTask = document.querySelector('input');
+const clearbtn = document.querySelector('button');
+const Toprint = new Listprint();
+
+inTask.addEventListener('keyup', (e) => {
+  if ((e.code === 'Enter' || e.code === 'NumpadEnter') && (inTask.value)) {
+    const ins = new Task();
+    ins.txt = inTask.value;
+    ins.state = false;
+    Toprint.addtask(ins);
+    inTask.value = '';
+
+    localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
+    printList(Toprint.arr);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (!JSON.parse(localStorage.getItem('lsTask'))) {
+    Toprint.arr = [
+      {
+        txt: 'wash the dogs',
+        state: false,
+      },
+      {
+        txt: 'Complete To Do list project',
+        state: false,
+      },
+      {
+        txt: 'fix car',
+        state: false,
+      },
+    ];
+    localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
+    printList(Toprint.arr);
+  } else {
+    Toprint.arr = JSON.parse(localStorage.getItem('lsTask'));
+    printList(Toprint.arr);
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (e.target.matches('.tasks ul li input[type=\'text\']')) {
+    Toprint.arr = JSON.parse(localStorage.getItem('lsTask'));
+    const imgOption = document.querySelectorAll('.tasks ul li img');
+    const activeTask = document.getElementsByName('taskinlist');
+    imgOption.forEach((img) => {
+      if (img.id === e.target.id) {
+        img.src = svgDelete;
+        img.addEventListener('click', () => {
+          Toprint.arr = JSON.parse(localStorage.getItem('lsTask'));
+          Toprint.remove1task(e.target.id);
+          localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
+          printList(Toprint.arr);
+        });
+      } else {
+        img.src = svgMore;
+      }
+    });
+
+    activeTask.forEach((element) => {
+      element.addEventListener('input', (e) => {
+        Toprint.arr[e.target.id].txt = activeTask[e.target.id].value;
+        localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
+      });
+    });
+
+    const $li = document.querySelectorAll('li');
+    $li.forEach((img) => {
+      if (img.id === e.target.id) {
+        img.classList.add('lightbg');
+      } else {
+        img.classList.remove('lightbg');
+      }
+    });
+  } else {
+    const imgOption = document.querySelectorAll('.tasks ul li img');
+    imgOption.forEach((img) => {
+      img.src = svgMore;
+    });
+    const $li = document.querySelectorAll('li');
+    $li.forEach((img) => {
+      img.classList.remove('lightbg');
+    });
+  }
+
+  if (e.target.matches('.tasks ul li input[type=\'checkbox\']')) {
+    Toprint.arr = JSON.parse(localStorage.getItem('lsTask'));
+    const tasktached = document.getElementsByName('taskinlist');
+    if (e.target.checked) {
+      tasktached.forEach((task, index) => {
+        if (task.id === e.target.id) {
+          task.classList.add('tached');
+          Toprint.arr[index].state = true;
+        }
+      });
+      const $li = document.querySelectorAll('li');
+      $li.forEach((img) => {
+        img.classList.remove('lightbg');
+      });
+    } else {
+      tasktached.forEach((task, index) => {
+        if (task.id === e.target.id) {
+          task.classList.remove('tached');
+          Toprint.arr[index].state = false;
+        }
+      });
+    }
+    localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
+  }
+});
+
+clearbtn.addEventListener('click', () => {
+  Toprint.arr = JSON.parse(localStorage.getItem('lsTask'));
+  Toprint.arr = Toprint.removesometasks();
+  printList(Toprint.arr);
+  localStorage.setItem('lsTask', JSON.stringify(Toprint.arr));
 });
