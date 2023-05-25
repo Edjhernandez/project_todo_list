@@ -194,6 +194,10 @@ document.addEventListener('click', (e) => {
     imgOption.forEach((img) => {
       img.src = svgMore;
     });
+    const $li = document.querySelectorAll('li');
+    $li.forEach((img) => {
+      img.classList.remove('lightbg');
+    });
   }
 
   if (e.target.matches('.tasks ul li input[type=\'checkbox\']')) {
